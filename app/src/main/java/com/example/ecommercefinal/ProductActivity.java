@@ -4,23 +4,28 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ProductAdapter adapter;
-
-    // Sample static data
-    private String[] productNames = {"Product 1", "Product 2", "Product 3"};
-    private int[] productImages = {R.drawable.product_towel, R.drawable.product_tshirt, R.drawable.product_shorts}; // Example drawable resources
-    private String[] productPrices = {"$10", "$20", "$30"};
+    private DatabaseReference databaseReference;
+    private List<Product> productList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,20 +35,35 @@ public class ProductActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new ProductAdapter(productNames, productImages, productPrices);
+        productList = new ArrayList<>();
+        adapter = new ProductAdapter(productList);
         recyclerView.setAdapter(adapter);
+
+        // Initialize Firebase Database
+        databaseReference = FirebaseDatabase.getInstance().getReference("products");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                productList.clear();
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Product product = postSnapshot.getValue(Product.class);
+                    productList.add(product);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("ProductActivity", "loadProduct:onCancelled", databaseError.toException());
+            }
+        });
     }
 
     private class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
+        private List<Product> productList;
 
-        String[] names;
-        int[] images;
-        String[] prices;
-
-        ProductAdapter(String[] names, int[] images, String[] prices) {
-            this.names = names;
-            this.images = images;
-            this.prices = prices;
+        ProductAdapter(List<Product> productList) {
+            this.productList = productList;
         }
 
         @NonNull
@@ -55,14 +75,17 @@ public class ProductActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-            holder.productName.setText(names[position]);
-            holder.productImage.setImageResource(images[position]);
-            holder.productPrice.setText(prices[position]);
+            Product product = productList.get(position);
+            holder.productName.setText(product.getName());
+            holder.productPrice.setText(product.getPrice());
+            Glide.with(ProductActivity.this)
+                    .load(product.getImageUrl())
+                    .into(holder.productImage);
         }
 
         @Override
         public int getItemCount() {
-            return names.length;
+            return productList.size();
         }
 
         class ProductViewHolder extends RecyclerView.ViewHolder {
