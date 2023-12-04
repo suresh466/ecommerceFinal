@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ecommercefinal</string>
+    <string name="btn_start_text">Start Shopping</string>
+    <string name="brand_name">OneShop</string>
+    <string name="logo_description">OneShop logo</string>
+    <string name="tagline">You Deserve the Best</string>
+</resources>
