@@ -4,4 +4,6 @@
     <string name="brand_name">OneShop</string>
     <string name="logo_description">OneShop logo</string>
     <string name="tagline">You Deserve the Best</string>
+    <string name="details_btn_text">Details</string>
+    <string name="product_image_description">Product Image</string>
 </resources>
