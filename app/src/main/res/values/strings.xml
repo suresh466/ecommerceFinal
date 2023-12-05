@@ -13,4 +13,6 @@
     <string name="expiry_date_hint_text">Expiry Date (MM/YY)</string>
     <string name="name_hint_text">Name</string>
     <string name="postal_code_hint_text">Postal Code</string>
+    <string name="buy_now_btn_text">Buy Now</string>
+    <string name="product_detail_image_content_description">Product Detail Image</string>
 </resources>
