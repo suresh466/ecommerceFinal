@@ -1,6 +1,8 @@
 package com.example.ecommercefinal;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private String description, eligibleReturnDuration, imageUrl, name, price;
 
     public Product() {

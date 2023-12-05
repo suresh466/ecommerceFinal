@@ -4,11 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
@@ -81,6 +84,14 @@ public class ProductActivity extends AppCompatActivity {
             Glide.with(ProductActivity.this)
                     .load(product.getImageUrl())
                     .into(holder.productImage);
+            holder.detailsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(ProductActivity.this, DetailActivity.class);
+                    intent.putExtra("product", product); // Passing the whole product object
+                    ProductActivity.this.startActivity(intent);
+                }
+            });
         }
 
         @Override
@@ -91,12 +102,14 @@ public class ProductActivity extends AppCompatActivity {
         class ProductViewHolder extends RecyclerView.ViewHolder {
             TextView productName, productPrice;
             ImageView productImage;
+            Button detailsButton;
 
             ProductViewHolder(View itemView) {
                 super(itemView);
                 productName = itemView.findViewById(R.id.productName);
                 productImage = itemView.findViewById(R.id.productImage);
                 productPrice = itemView.findViewById(R.id.productPrice);
+                detailsButton = itemView.findViewById(R.id.detailsButton);
             }
         }
     }

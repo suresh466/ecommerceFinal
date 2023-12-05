@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/logoYellow"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/nameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/name_hint_text"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:textColor="@color/logoDarkBlue"
+            android:textColorHint="@color/logoBlue" />
+
+        <EditText
+            android:id="@+id/addressEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="@string/address_hint_text"
+            android:inputType="textPostalAddress"
+            android:minHeight="48dp"
+            android:textColor="@color/logoDarkBlue"
+            android:textColorHint="@color/logoBlue" />
+
+        <EditText
+            android:id="@+id/postalCodeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="@string/postal_code_hint_text"
+            android:inputType="textPostalAddress"
+            android:minHeight="48dp"
+            android:textColor="@color/logoDarkBlue"
+            android:textColorHint="@color/logoBlue" />
+
+        <EditText
+            android:id="@+id/cardNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="@string/card_number_hint_text"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:textColor="@color/logoDarkBlue"
+            android:textColorHint="@color/logoBlue" />
+
+        <EditText
+            android:id="@+id/expiryDateEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="@string/expiry_date_hint_text"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:textColor="@color/logoDarkBlue"
+            android:textColorHint="@color/logoBlue" />
+
+        <EditText
+            android:id="@+id/cvEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="@string/cvv_hint_text"
+            android:inputType="numberPassword"
+            android:minHeight="48dp"
+            android:textColor="@color/logoDarkBlue"
+            android:textColorHint="@color/logoBlue" />
+
+        <Button
+            android:id="@+id/checkoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/logoYellow"
+            android:text="@string/checkout_hint_text"
+            android:textColor="@color/logoDarkBlue" />
+    </LinearLayout>
+</ScrollView>

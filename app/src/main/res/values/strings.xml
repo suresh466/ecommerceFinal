@@ -6,4 +6,11 @@
     <string name="tagline">You Deserve the Best</string>
     <string name="details_btn_text">Details</string>
     <string name="product_image_description">Product Image</string>
+    <string name="address_hint_text">Address</string>
+    <string name="card_number_hint_text">Card Number</string>
+    <string name="checkout_hint_text">Checkout</string>
+    <string name="cvv_hint_text">CVV</string>
+    <string name="expiry_date_hint_text">Expiry Date (MM/YY)</string>
+    <string name="name_hint_text">Name</string>
+    <string name="postal_code_hint_text">Postal Code</string>
 </resources>
